@@ -24,23 +24,24 @@ construirTelaLogin() {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              construirCabecalho(),
+              construirCabecalho('Entrar', 'Bem-vindo',
+                  'Entre com email e senha \n ou continue com as redes sociais'),
               const SizedBox(height: 15),
               const MeuForm()
             ],
           )));
 }
 
-construirCabecalho() {
+construirCabecalho(String texto1, String texto2, String texto3) {
   return Center(
     child: Column(
-      children: const [
-        Text('Entrar', style: TextStyle(color: corTexto, fontSize: 16)),
-        SizedBox(height: 30),
-        Text('Bem-vindo de volta', style: estiloCabecalho),
-        SizedBox(height: 15),
-        Text('Entre com email e senha \n ou continue com as redes sociais',
-            style: TextStyle(color: corTexto, fontSize: 12),
+      children: [
+        Text(texto1, style: const TextStyle(color: corTexto, fontSize: 16)),
+        const SizedBox(height: 30),
+        Text(texto2, style: estiloCabecalho),
+        const SizedBox(height: 15),
+        Text(texto3,
+            style: const TextStyle(color: corTexto, fontSize: 12),
             textAlign: TextAlign.center)
       ],
     ),
