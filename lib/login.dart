@@ -21,14 +21,11 @@ class _LoginState extends State<Login> {
 construirTelaLogin() {
   return SafeArea(
       child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.all(16),
           child: Column(
             children: [
               construirCabecalho(),
-              const Flexible(
-                  child: FractionallySizedBox(
-                heightFactor: 0.3,
-              )),
+              const SizedBox(height: 15),
               const MeuForm()
             ],
           )));
@@ -39,7 +36,7 @@ construirCabecalho() {
     child: Column(
       children: const [
         Text('Entrar', style: TextStyle(color: corTexto, fontSize: 16)),
-        SizedBox(height: 40),
+        SizedBox(height: 30),
         Text('Bem-vindo de volta', style: estiloCabecalho),
         SizedBox(height: 15),
         Text('Entre com email e senha \n ou continue com as redes sociais',
@@ -47,6 +44,55 @@ construirCabecalho() {
             textAlign: TextAlign.center)
       ],
     ),
+  );
+}
+
+buildRowOpcoes() {
+  return Row(
+    children: const [
+      //CheckButtonWidget(),
+      Text('Permanecer logado? ', style: TextStyle(fontSize: 11)),
+      SizedBox(width: 70),
+      Text('Esqueceu a senha?', style: TextStyle(fontSize: 11))
+    ],
+  );
+}
+
+buildRowRedesSociais() {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [
+      IconButton(
+        icon: const Icon(Icons.facebook),
+        onPressed: () {},
+        iconSize: 15,
+      ),
+      IconButton(
+        icon: const Icon(Icons.g_mobiledata_outlined),
+        onPressed: () {},
+        iconSize: 15,
+      ),
+      IconButton(
+        icon: const Icon(Icons.social_distance),
+        onPressed: () {},
+        iconSize: 15,
+      )
+    ],
+  );
+}
+
+buildRowBotaoCadastrar() {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      const Text('Não possui conta?'),
+      TextButton(
+          onPressed: () {},
+          child: const Text(
+            'Cadastre-se',
+            style: TextStyle(color: corPrimaria),
+          ))
+    ],
   );
 }
 
@@ -63,27 +109,39 @@ class _MeuFormState extends State<MeuForm> {
   Widget build(BuildContext context) {
     return Form(
         child: Expanded(
-      child: ListView(
-        children: [
-          TextFormField(
-            decoration: InputDecoration(
-                suffixIcon: const Icon(Icons.email),
-                labelText: 'Email',
-                hintText: 'Digite o seu email',
-                border: OutlineInputBorder(
+      child: ListView(children: [
+        TextFormField(
+          decoration: InputDecoration(
+              suffixIcon: const Icon(Icons.email),
+              labelText: 'Email',
+              hintText: 'Digite o seu email',
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(30))),
+        ),
+        const SizedBox(height: 15),
+        TextFormField(
+          decoration: InputDecoration(
+              suffixIcon: const Icon(Icons.password),
+              labelText: 'Senha',
+              hintText: 'Digite a sua senha',
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(30))),
+        ),
+        const SizedBox(height: 15),
+        buildRowOpcoes(),
+        const SizedBox(height: 30),
+        ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                minimumSize: const Size(120, 40),
+                primary: corPrimaria,
+                shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30))),
-          ),
-          const SizedBox(height: 15),
-          TextFormField(
-            decoration: InputDecoration(
-                suffixIcon: const Icon(Icons.password),
-                labelText: 'Senha',
-                hintText: 'Digite a sua senha',
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30))),
-          )
-        ],
-      ),
+            onPressed: () {},
+            child: const Text('Entrar')),
+        const SizedBox(height: 20),
+        buildRowRedesSociais(),
+        buildRowBotaoCadastrar()
+      ]),
     ));
   }
 }
