@@ -139,7 +139,9 @@ class _MeuFormState extends State<MeuForm> {
                 primary: corPrimaria,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30))),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/home');
+            },
             child: const Text('Entrar')),
         const SizedBox(height: 20),
         buildRowRedesSociais(),
