@@ -82,13 +82,15 @@ buildRowRedesSociais() {
   );
 }
 
-buildRowBotaoCadastrar() {
+buildRowBotaoCadastrar(context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       const Text('Não possui conta?'),
       TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, '/cadastro');
+          },
           child: const Text(
             'Cadastre-se',
             style: TextStyle(color: corPrimaria),
@@ -141,7 +143,7 @@ class _MeuFormState extends State<MeuForm> {
             child: const Text('Entrar')),
         const SizedBox(height: 20),
         buildRowRedesSociais(),
-        buildRowBotaoCadastrar()
+        buildRowBotaoCadastrar(context)
       ]),
     ));
   }
