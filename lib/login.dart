@@ -123,6 +123,7 @@ class _MeuFormState extends State<MeuForm> {
         ),
         const SizedBox(height: 15),
         TextFormField(
+          obscureText: true,
           decoration: InputDecoration(
               suffixIcon: const Icon(Icons.password),
               labelText: 'Senha',

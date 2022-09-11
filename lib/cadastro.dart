@@ -57,6 +57,7 @@ class _MyFormState extends State<MyForm> {
       ),
       const SizedBox(height: 15),
       TextFormField(
+        obscureText: true,
         decoration: InputDecoration(
             suffixIcon: const Icon(Icons.password),
             labelText: 'Senha',
@@ -66,6 +67,7 @@ class _MyFormState extends State<MyForm> {
       ),
       const SizedBox(height: 15),
       TextFormField(
+        obscureText: true,
         decoration: InputDecoration(
             suffixIcon: const Icon(Icons.password),
             labelText: 'Confirme a senha',

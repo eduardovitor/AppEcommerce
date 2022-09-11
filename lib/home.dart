@@ -1,4 +1,5 @@
 import 'package:app_ecommerce/constantes.dart';
+import 'package:app_ecommerce/loja.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -11,7 +12,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _indiceselecionado = 0;
   static const List<Widget> _paginas = [
-    Text('Tela1'),
+    Loja(),
     Text('Tela2'),
     Text('Tela3'),
     Text('Tela4')
