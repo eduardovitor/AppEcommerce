@@ -1,4 +1,5 @@
 import 'package:app_ecommerce/constantes.dart';
+import 'package:app_ecommerce/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -64,17 +65,17 @@ buildRowRedesSociais() {
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
       IconButton(
-        icon: const Icon(Icons.facebook),
+        icon: const Icon(CustomIcons.google),
         onPressed: () {},
         iconSize: 15,
       ),
       IconButton(
-        icon: const Icon(Icons.g_mobiledata_outlined),
+        icon: const Icon(CustomIcons.facebook_rect),
         onPressed: () {},
         iconSize: 15,
       ),
       IconButton(
-        icon: const Icon(Icons.social_distance),
+        icon: const Icon(CustomIcons.twitter_bird),
         onPressed: () {},
         iconSize: 15,
       )
@@ -108,6 +109,11 @@ class MeuForm extends StatefulWidget {
 
 class _MeuFormState extends State<MeuForm> {
   final _formkey = GlobalKey<FormState>;
+  // void pressionarBotaoOcultarSenha(){
+  //  setState(() {
+  //      = indice; adicionar uma variável e colocar if ternário
+  //   });
+  // }
   @override
   Widget build(BuildContext context) {
     return Form(
