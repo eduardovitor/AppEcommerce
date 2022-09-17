@@ -23,12 +23,14 @@ buildLoja() {
   return SafeArea(
       child: Padding(
     padding: const EdgeInsets.all(8.0),
-    child: Column(
+    child: ListView(
       children: [
-        const SizedBox(height: 10),
+        const SizedBox(height: 15),
         buildBarraPesquisaComIcones(),
-        const SizedBox(height: 10),
-        buildBannerPromocao()
+        const SizedBox(height: 15),
+        buildBannerPromocao(),
+        const SizedBox(height: 15),
+        buildRowOfertas()
       ],
     ),
   ));
@@ -68,22 +70,51 @@ buildBarraPesquisaComIcones() {
 
 buildBannerPromocao() {
   return Container(
-    width: 300,
-    height: 100,
+    width: 50,
+    height: 70,
     alignment: Alignment.topLeft,
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30), color: Colors.deepPurple),
     child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Column(
         children: const [
           Text('Uma surpresa de verão',
-              style: TextStyle(color: Colors.white, fontSize: 15)),
+              style: TextStyle(color: Colors.white, fontSize: 10)),
           SizedBox(height: 15),
           Text('Cashback 20%',
-              style: TextStyle(color: Colors.white, fontSize: 30)),
+              style: TextStyle(color: Colors.white, fontSize: 16)),
         ],
       ),
     ),
   );
+}
+
+buildRowOfertas() {
+  return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          buildBotaoOferta(Icons.flash_on, 'Pechincha'),
+          const SizedBox(width: 10),
+          buildBotaoOferta(Icons.newspaper, 'Barato'),
+          const SizedBox(width: 10),
+          buildBotaoOferta(Icons.games, 'Jogos'),
+          const SizedBox(width: 10),
+          buildBotaoOferta(Icons.card_giftcard, 'Presente'),
+          const SizedBox(width: 10),
+          buildBotaoOferta(Icons.more, 'Mais')
+        ],
+      ));
+}
+
+buildBotaoOferta(IconData iconData, String text) {
+  return Column(children: [
+    Container(
+        height: 60,
+        width: 60,
+        decoration: const BoxDecoration(color: corPrimariaClara),
+        child: Icon(iconData, color: corPrimaria)),
+    Text(text, style: const TextStyle(color: corSecundaria))
+  ]);
 }
