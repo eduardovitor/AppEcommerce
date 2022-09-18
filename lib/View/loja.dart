@@ -32,11 +32,10 @@ buildLoja() {
         const SizedBox(height: 20),
         buildRowTextoPropaganda('Especialmente para você', 'Veja mais'),
         const SizedBox(height: 15),
-        buildBannerCategoria(),
+        buildRowCategorias(),
         const SizedBox(height: 15),
-        buildRowTextoPropaganda('Produtos populares', 'Veja mais'),
-        const SizedBox(height: 15),
-        buildBannerCategoria()
+        buildRowTextoPropaganda2('Produtos populares', 'Veja mais'),
+        const SizedBox(height: 15)
       ],
     ),
   ));
@@ -57,40 +56,46 @@ buildBarraPesquisaComIcones() {
         ),
       ),
       const SizedBox(width: 7),
-      Container(
-          width: 45,
-          height: 45,
-          decoration: BoxDecoration(
-              color: Colors.grey, borderRadius: BorderRadius.circular(30)),
-          child: const Icon(Icons.shopping_cart_outlined)),
+      GestureDetector(
+        child: Container(
+            width: 45,
+            height: 45,
+            decoration: BoxDecoration(
+                color: Colors.grey, borderRadius: BorderRadius.circular(30)),
+            child: const Icon(Icons.shopping_cart_outlined)),
+      ),
       const SizedBox(width: 7),
-      Container(
-          width: 45,
-          height: 45,
-          decoration: BoxDecoration(
-              color: Colors.grey, borderRadius: BorderRadius.circular(30)),
-          child: const Icon(Icons.notifications_outlined))
+      GestureDetector(
+        child: Container(
+            width: 45,
+            height: 45,
+            decoration: BoxDecoration(
+                color: Colors.grey, borderRadius: BorderRadius.circular(30)),
+            child: const Icon(Icons.notifications_outlined)),
+      )
     ],
   );
 }
 
 buildBannerPromocao() {
-  return Container(
-    width: 50,
-    height: 70,
-    alignment: Alignment.topLeft,
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30), color: Colors.deepPurple),
-    child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      child: Column(
-        children: const [
-          Text('Uma surpresa de verão',
-              style: TextStyle(color: Colors.white, fontSize: 10)),
-          SizedBox(height: 15),
-          Text('Cashback 20%',
-              style: TextStyle(color: Colors.white, fontSize: 16)),
-        ],
+  return GestureDetector(
+    child: Container(
+      width: 50,
+      height: 70,
+      alignment: Alignment.topLeft,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30), color: Colors.deepPurple),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        child: Column(
+          children: const [
+            Text('Uma surpresa de verão',
+                style: TextStyle(color: Colors.white, fontSize: 10)),
+            SizedBox(height: 15),
+            Text('Cashback 20%',
+                style: TextStyle(color: Colors.white, fontSize: 16)),
+          ],
+        ),
       ),
     ),
   );
@@ -116,11 +121,13 @@ buildRowOfertas() {
 
 buildBotaoOferta(IconData dadosIcone, String texto) {
   return Column(children: [
-    Container(
-        height: 60,
-        width: 60,
-        decoration: const BoxDecoration(color: corPrimariaClara),
-        child: Icon(dadosIcone, color: corPrimaria)),
+    GestureDetector(
+      child: Container(
+          height: 60,
+          width: 60,
+          decoration: const BoxDecoration(color: corPrimariaClara),
+          child: Icon(dadosIcone, color: corPrimaria)),
+    ),
     Text(texto, style: const TextStyle(color: corSecundaria))
   ]);
 }
@@ -135,11 +142,52 @@ buildRowTextoPropaganda(String texto1, String texto2) {
   );
 }
 
+buildRowTextoPropaganda2(String texto1, String texto2) {
+  return Row(
+    children: [
+      Text(texto1, style: const TextStyle(color: Colors.black, fontSize: 16)),
+      const SizedBox(width: 90),
+      Text(texto2, style: const TextStyle(color: corTexto))
+    ],
+  );
+}
+
+buildRowCategorias() {
+  return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [buildBannerCategoria()],
+      ));
+}
+
 buildBannerCategoria() {
-  return Container(
-    height: 100,
-    width: 50,
-    alignment: Alignment.topLeft,
-    decoration: BoxDecoration(color: Colors.blue),
+  return GestureDetector(
+      child: Container(
+          height: 100,
+          width: 200,
+          alignment: Alignment.topLeft,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              image: const DecorationImage(
+                  image: AssetImage("assets/smartphones.jpg"),
+                  fit: BoxFit.cover)),
+          child: buildTextosCategoria('Smartphone', '18 marcas')));
+}
+
+buildTextosCategoria(String texto1, String texto2) {
+  return Padding(
+    padding: const EdgeInsets.all(8),
+    child: Column(
+      children: [
+        Text(texto1,
+            style: const TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontWeight: FontWeight.w800)),
+        Text(texto2,
+            style: const TextStyle(
+                color: Colors.white, fontSize: 10, fontWeight: FontWeight.w800))
+      ],
+    ),
   );
 }
