@@ -1,7 +1,5 @@
 import 'package:app_ecommerce/constantes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class Loja extends StatefulWidget {
   const Loja({Key? key}) : super(key: key);
@@ -30,7 +28,15 @@ buildLoja() {
         const SizedBox(height: 15),
         buildBannerPromocao(),
         const SizedBox(height: 15),
-        buildRowOfertas()
+        buildRowOfertas(),
+        const SizedBox(height: 20),
+        buildRowTextoPropaganda('Especialmente para você', 'Veja mais'),
+        const SizedBox(height: 15),
+        buildBannerCategoria(),
+        const SizedBox(height: 15),
+        buildRowTextoPropaganda('Produtos populares', 'Veja mais'),
+        const SizedBox(height: 15),
+        buildBannerCategoria()
       ],
     ),
   ));
@@ -108,13 +114,32 @@ buildRowOfertas() {
       ));
 }
 
-buildBotaoOferta(IconData iconData, String text) {
+buildBotaoOferta(IconData dadosIcone, String texto) {
   return Column(children: [
     Container(
         height: 60,
         width: 60,
         decoration: const BoxDecoration(color: corPrimariaClara),
-        child: Icon(iconData, color: corPrimaria)),
-    Text(text, style: const TextStyle(color: corSecundaria))
+        child: Icon(dadosIcone, color: corPrimaria)),
+    Text(texto, style: const TextStyle(color: corSecundaria))
   ]);
+}
+
+buildRowTextoPropaganda(String texto1, String texto2) {
+  return Row(
+    children: [
+      Text(texto1, style: const TextStyle(color: Colors.black, fontSize: 16)),
+      const SizedBox(width: 50),
+      Text(texto2, style: const TextStyle(color: corTexto))
+    ],
+  );
+}
+
+buildBannerCategoria() {
+  return Container(
+    height: 100,
+    width: 50,
+    alignment: Alignment.topLeft,
+    decoration: BoxDecoration(color: Colors.blue),
+  );
 }
