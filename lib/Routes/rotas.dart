@@ -1,7 +1,7 @@
-import 'package:app_ecommerce/home.dart';
-import 'package:app_ecommerce/login.dart';
+import 'package:app_ecommerce/View/home.dart';
+import 'package:app_ecommerce/View/login.dart';
 
-import 'cadastro.dart';
+import '../View/cadastro.dart';
 
 var routes = {
   '/': (context) => const Login(),

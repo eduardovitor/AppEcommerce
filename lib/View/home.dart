@@ -1,5 +1,5 @@
-import 'package:app_ecommerce/constantes.dart';
-import 'package:app_ecommerce/loja.dart';
+import 'package:app_ecommerce/Helpers/constantes.dart';
+import 'package:app_ecommerce/View/loja.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {

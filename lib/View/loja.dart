@@ -1,4 +1,4 @@
-import 'package:app_ecommerce/constantes.dart';
+import 'package:app_ecommerce/Helpers/constantes.dart';
 import 'package:flutter/material.dart';
 
 class Loja extends StatefulWidget {

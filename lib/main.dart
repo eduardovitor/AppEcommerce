@@ -1,4 +1,4 @@
-import 'package:app_ecommerce/rotas.dart';
+import 'package:app_ecommerce/Routes/rotas.dart';
 import 'package:flutter/material.dart';
 
 void main() {

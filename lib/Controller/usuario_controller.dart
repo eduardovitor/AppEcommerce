@@ -1,7 +1,7 @@
-import 'package:app_ecommerce/usuario.dart';
+import 'package:app_ecommerce/Model/usuario.dart';
 import 'package:sqflite/sqflite.dart';
 
-import 'database_helper.dart';
+import '../Database/database_helper.dart';
 
 class UsuarioController {
   final String tableName = 'usuario';
