@@ -1,4 +1,5 @@
 import 'package:app_ecommerce/Helpers/constantes.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class Loja extends StatefulWidget {
@@ -9,36 +10,65 @@ class Loja extends StatefulWidget {
 }
 
 class _LojaState extends State<Loja> {
+  final CollectionReference _produtos =
+      FirebaseFirestore.instance.collection('produtos');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: buildLoja(),
     );
   }
-}
 
-buildLoja() {
-  return SafeArea(
-      child: Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: ListView(
-      children: [
-        const SizedBox(height: 15),
-        buildBarraPesquisaComIcones(),
-        const SizedBox(height: 15),
-        buildBannerPromocao(),
-        const SizedBox(height: 15),
-        buildRowOfertas(),
-        const SizedBox(height: 20),
-        buildRowTextoPropaganda('Especialmente para você', 'Veja mais'),
-        const SizedBox(height: 15),
-        buildRowCategorias(),
-        const SizedBox(height: 15),
-        buildRowTextoPropaganda2('Produtos populares', 'Veja mais'),
-        const SizedBox(height: 15)
-      ],
-    ),
-  ));
+  buildLoja() {
+    return SafeArea(
+        child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListView(
+        children: [
+          const SizedBox(height: 15),
+          buildBarraPesquisaComIcones(),
+          const SizedBox(height: 15),
+          buildBannerPromocao(),
+          const SizedBox(height: 15),
+          buildRowOfertas(),
+          const SizedBox(height: 20),
+          buildRowTextoPropaganda('Especialmente para você', 'Veja mais'),
+          const SizedBox(height: 15),
+          buildRowCategorias(),
+          const SizedBox(height: 15),
+          buildRowTextoPropaganda2('Produtos populares', 'Veja mais'),
+          const SizedBox(height: 15),
+          buildListaProdutos()
+        ],
+      ),
+    ));
+  }
+
+  buildListaProdutos() {
+    return StreamBuilder(
+        stream: _produtos.snapshots(), //build connection
+        builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+          if (streamSnapshot.hasData) {
+            return ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: streamSnapshot.data!.docs.length, //number of rows
+                itemBuilder: (context, index) {
+                  final DocumentSnapshot documentSnapshot =
+                      streamSnapshot.data!.docs[index];
+                  return Card(
+                      margin: const EdgeInsets.all(10),
+                      child: ListTile(
+                          title: Text(documentSnapshot['nome']),
+                          subtitle:
+                              Text(documentSnapshot['preco'].toString())));
+                });
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        });
+  }
 }
 
 buildBarraPesquisaComIcones() {
