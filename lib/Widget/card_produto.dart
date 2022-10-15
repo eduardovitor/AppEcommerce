@@ -1,27 +1,34 @@
 import 'package:flutter/material.dart';
 
-import '../Model/produto.dart';
-
 class CardProduto extends StatefulWidget {
-  final Produto produto;
-  const CardProduto({Key? key, required this.produto}) : super(key: key);
+  final String pathImagem;
+  final String nome;
+  final String preco;
+  const CardProduto(
+      {Key? key,
+      required this.pathImagem,
+      required this.nome,
+      required this.preco})
+      : super(key: key);
 
   @override
   State<CardProduto> createState() => _CardProdutoState();
 }
 
 class _CardProdutoState extends State<CardProduto> {
-  Produto get produto => widget.produto;
+  String get pathImagem => widget.pathImagem;
+  String get nome => widget.nome;
+  String get preco => widget.preco;
   @override
   Widget build(BuildContext context) {
     return Card(
         shadowColor: Colors.black,
         color: Colors.grey,
-        child: buildCardContent(produto));
+        child: buildCardContent(nome, pathImagem, preco));
   }
 }
 
-buildCardContent(Produto produto) {
+buildCardContent(String nome, String pathImagem, String preco) {
   return SizedBox(
     height: 100,
     width: 100,
@@ -29,11 +36,11 @@ buildCardContent(Produto produto) {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          Image.asset(produto.pathImagem),
+          Image.asset(pathImagem),
           const SizedBox(height: 5),
-          Text(produto.nome),
+          Text(nome),
           const SizedBox(height: 5),
-          Text(produto.preco.toString())
+          Text(preco.toString())
         ],
       ),
     ),
